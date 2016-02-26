@@ -12,14 +12,14 @@ Window {
 
     Component.onCompleted: {
         map = mapComponent.createObject(page);
-        var arrCoor = map.bd09ToGcj02(21.444495, 109.10441)
+        var arrCoor = map.bd09ToGcj02(22.244466, 113.553595)
         console.log(arrCoor)
         arrCoor = map.gcj02ToWgs84(arrCoor[0], arrCoor[1])
         console.log(arrCoor)
         map.m_ctLat = arrCoor[0]
         map.m_ctLon = arrCoor[1]
         map.m_curZoomLv = 15
-        map.addMarker("恒大-御景半岛", arrCoor[0], arrCoor[1])
+        map.addMarker("格力-香樟", arrCoor[0], arrCoor[1])
     }
 
     Component {

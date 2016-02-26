@@ -4,8 +4,8 @@ import QtPositioning 5.3
 
 Map {
     id: map
-    property real m_ctLat: 21.478394
-    property real m_ctLon: 109.118653//默认中心定位“北海”
+    property real m_ctLat: 21.478394//默认纬度
+    property real m_ctLon: 109.118653//默认经度
     property int m_curZoomLv: 13//当前缩放级别
     plugin: Plugin {
         name: "osm"
@@ -48,9 +48,7 @@ Map {
             if (mouse.button === Qt.LeftButton) {
                 map.zoomLevel++
             } else if (mouse.button === Qt.RightButton) {
-                //map.zoomLevel--
-                lastCoordinate = map.toCoordinate(Qt.point(mouse.x, mouse.y))
-                console.log(lastCoordinate.latitude + " - " + lastCoordinate.longitude)
+                map.zoomLevel--
             }
             map.lastX = -1
             map.lastY = -1
@@ -61,8 +59,7 @@ Map {
         var marker = Qt.createQmlObject('Marker {}', map)
         marker.m_makerTitle = title
         marker.z = map.z + 1//使图层在地图之上
-        marker.coordinate.latitude = lat//QtPositioning.coordinate(lat, lon)//mouseArea.lastCoordinate
-        marker.coordinate.longitude = lon
+        marker.coordinate = QtPositioning.coordinate(lat, lon)//mouseArea.lastCoordinate
         map.addMapItem(marker)
     }
 
